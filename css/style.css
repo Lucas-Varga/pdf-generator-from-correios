@@ -1,0 +1,228 @@
+/* style.css */
+
+/* Variáveis CSS para cores e estilos */
+:root {
+    --bg-dark: #1e1e2d;
+    --bg-gradient-start: #2a2a3e;
+    --bg-gradient-end: #1a1a2e;
+    --card-bg: rgba(45, 45, 60, 0.6); /* Cor mais escura, mais translúcida */
+    --card-border: rgba(255, 255, 255, 0.1);
+    --text-color: #e0e0e0;
+    --placeholder-color: #888;
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --input-border: rgba(255, 255, 255, 0.15);
+    --input-focus-border: #6a8cff; /* Azul mais vibrante para foco */
+    --button-bg: linear-gradient(135deg, #6a8cff, #8d7eff); /* Gradiente azul/roxo */
+    --button-hover-bg: linear-gradient(135deg, #5c7ee0, #7a6eec);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --border-radius-lg: 12px;
+    --border-radius-md: 8px;
+    --border-radius-sm: 6px;
+}
+
+/* Reset básico e tipografia */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+    overflow: auto; /* Permite scroll se o conteúdo for grande */
+}
+
+/* Container principal */
+.container {
+    background: var(--card-bg); /* Fundo sutilmente translúcido */
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    backdrop-filter: blur(20px); /* Efeito de vidro borrado */
+    -webkit-backdrop-filter: blur(20px); /* Compatibilidade Safari */
+    width: 90%;
+    max-width: 900px; /* Largura máxima para desktops */
+    margin: 40px auto; /* Margem superior e inferior para evitar colagem */
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Cabeçalho com semáforos macOS */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.traffic-lights {
+    display: flex;
+    gap: 7px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    opacity: 0.8;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.dot.red { background-color: #ff5f56; }
+.dot.yellow { background-color: #ffbd2e; }
+.dot.green { background-color: #27c93f; }
+
+.dot:hover {
+    opacity: 1;
+}
+
+.header-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-color);
+    flex-grow: 1;
+    text-align: center; /* Centraliza o título */
+    margin-right: 40px; /* Espaço para os dots */
+}
+
+/* Cartões de vidro para formulário */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05); /* Um pouco mais translúcido para o card interno */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    backdrop-filter: blur(10px); /* Efeito blur para o card interno */
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Grupos de input */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.input-group input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--border-radius-md);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    -webkit-appearance: none; /* Remove estilos padrão de input em iOS */
+}
+
+.input-group input[type="text"]::placeholder {
+    color: var(--placeholder-color);
+    opacity: 0.7; /* Um pouco mais sutil */
+}
+
+.input-group input[type="text"]:focus {
+    outline: none;
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 3px rgba(106, 140, 255, 0.3); /* Sombra azul para foco */
+}
+
+/* Grupos de input em linha */
+.input-group-inline {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.input-group-inline .input-group {
+    flex: 1; /* Distribui o espaço igualmente */
+    margin-bottom: 0; /* Remove margem inferior extra */
+}
+
+/* Botão de geração */
+.generate-button {
+    width: 100%;
+    padding: 15px 20px;
+    margin-top: 30px;
+    background: var(--button-bg);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.generate-button:hover {
+    background: var(--button-hover-bg);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.generate-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Margem superior para títulos de seção */
+.mt-4 {
+    margin-top: 30px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    .header-title {
+        font-size: 1.2rem;
+        text-align: left;
+        margin-right: 0;
+    }
+
+    .header {
+        justify-content: space-between;
+    }
+
+    .input-group-inline {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .input-group-inline .input-group {
+        margin-bottom: 15px;
+    }
+
+    .glass-card {
+        padding: 20px;
+    }
+}

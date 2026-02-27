@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Documentos Elegante</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="traffic-lights">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+            </div>
+            <h1 class="header-title">Gerador de Documentos</h1>
+        </header>
+
+        <div class="main-content">
+            <form id="documentForm" class="glass-card">
+                <h2 class="card-title">Dados do Remetente</h2>
+                <div class="input-group">
+                    <label for="senderName">Nome Completo</label>
+                    <input type="text" id="senderName" name="senderName" required placeholder="LUCAS VARGA DA SILVA">
+                </div>
+                <div class="input-group">
+                    <label for="senderCpf">CPF</label>
+                    <input type="text" id="senderCpf" name="senderCpf" required placeholder="473.100.508-60">
+                </div>
+                <div class="input-group">
+                    <label for="senderAddressLine1">Endereço (Rua, Número)</label>
+                    <input type="text" id="senderAddressLine1" name="senderAddressLine1" required placeholder="Rua José Soriano de Souza Filho, 990">
+                </div>
+                <div class="input-group">
+                    <label for="senderAddressLine2">Bairro / Complemento</label>
+                    <input type="text" id="senderAddressLine2" name="senderAddressLine2" placeholder="Vila Joaquim Inacio">
+                </div>
+                <div class="input-group-inline">
+                    <div class="input-group">
+                        <label for="senderCity">Cidade</label>
+                        <input type="text" id="senderCity" name="senderCity" required placeholder="Campinas">
+                    </div>
+                    <div class="input-group">
+                        <label for="senderState">Estado (UF)</label>
+                        <input type="text" id="senderState" name="senderState" required maxlength="2" placeholder="SP">
+                    </div>
+                    <div class="input-group">
+                        <label for="senderZip">CEP</label>
+                        <input type="text" id="senderZip" name="senderZip" required placeholder="13045-630">
+                    </div>
+                </div>
+
+                <h2 class="card-title mt-4">Dados do Destinatário</h2>
+                <div class="input-group">
+                    <label for="recipientName">Nome Completo</label>
+                    <input type="text" id="recipientName" name="recipientName" required placeholder="Sabrina Roux Silva">
+                </div>
+                <div class="input-group">
+                    <label for="recipientAddressLine1">Endereço (Rua, Número)</label>
+                    <input type="text" id="recipientAddressLine1" name="recipientAddressLine1" required placeholder="Avenida Doutor Pedro Vicente de Azevedo, 262">
+                </div>
+                <div class="input-group">
+                    <label for="recipientAddressLine2">Bairro / Complemento</label>
+                    <input type="text" id="recipientAddressLine2" name="recipientAddressLine2" placeholder="Cruz, Lorena">
+                </div>
+                <div class="input-group-inline">
+                    <div class="input-group">
+                        <label for="recipientCity">Cidade</label>
+                        <input type="text" id="recipientCity" name="recipientCity" required placeholder="Lorena">
+                    </div>
+                    <div class="input-group">
+                        <label for="recipientState">Estado (UF)</label>
+                        <input type="text" id="recipientState" name="recipientState" required maxlength="2" placeholder="SP">
+                    </div>
+                    <div class="input-group">
+                        <label for="recipientZip">CEP</label>
+                        <input type="text" id="recipientZip" name="recipientZip" required placeholder="12606-050">
+                    </div>
+                </div>
+                
+                <button type="submit" class="generate-button">Gerar PDF</button>
+            </form>
+        </div>
+    </div>
+    <script src="../js/script.js"></script>
+</body>
+</html>
