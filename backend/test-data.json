@@ -1,0 +1,17 @@
+{
+  "sender": {
+    "name": "João Silva",
+    "cpf": "473.100.508-60",
+    "address": "Rua José Soriano de Souza, 990",
+    "city": "Campinas",
+    "state": "SP",
+    "zipCode": "13045-630"
+  },
+  "recipient": {
+    "name": "Maria Santos",
+    "address": "Avenida Pedro Vicente de Azevedo, 262",
+    "city": "Lorena",
+    "state": "SP",
+    "zipCode": "12606-050"
+  }
+}

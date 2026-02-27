@@ -1,0 +1,19 @@
+{
+  "name": "fdfs-backend",
+  "version": "1.0.0",
+  "description": "Backend para geração de PDFs com armazenamento em banco de dados",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["pdf", "express", "sqlite"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "pdfkit": "^0.13.0",
+    "dotenv": "^16.0.3"
+  }
+}

@@ -4,17 +4,32 @@ document.getElementById('documentForm').addEventListener('submit', async functio
     event.preventDefault(); // Impede o envio padrão do formulário
 
     const form = event.target;
-    const formData = new FormData(form);
-    const data = {};
 
-    // Coleta todos os dados do formulário
-    for (let [key, value] of formData.entries()) {
-        data[key] = value;
-    }
+    // Mapear dados do formulário para o formato esperado pelo backend
+    const sender = {
+        name: form.querySelector('[name="senderName"]').value,
+        cpf: form.querySelector('[name="senderCpf"]').value,
+        address: (form.querySelector('[name="senderAddressLine1"]').value +
+                  (form.querySelector('[name="senderAddressLine2"]').value ? ', ' + form.querySelector('[name="senderAddressLine2"]').value : '')).trim(),
+        city: form.querySelector('[name="senderCity"]').value,
+        state: form.querySelector('[name="senderState"]').value,
+        zipCode: form.querySelector('[name="senderZip"]').value
+    };
 
-    // Validação básica (pode ser expandida)
-    if (!data.senderName || !data.recipientName || !data.senderAddressLine1) {
-        alert('Por favor, preencha todos os campos obrigatórios (Nome e Endereço).');
+    const recipient = {
+        name: form.querySelector('[name="recipientName"]').value,
+        address: (form.querySelector('[name="recipientAddressLine1"]').value +
+                  (form.querySelector('[name="recipientAddressLine2"]').value ? ', ' + form.querySelector('[name="recipientAddressLine2"]').value : '')).trim(),
+        city: form.querySelector('[name="recipientCity"]').value,
+        state: form.querySelector('[name="recipientState"]').value,
+        zipCode: form.querySelector('[name="recipientZip"]').value
+    };
+
+    const data = { sender, recipient };
+
+    // Validação básica
+    if (!sender.name || !recipient.name || !sender.address || !recipient.address) {
+        alert('Por favor, preencha todos os campos obrigatórios.');
         return;
     }
 
@@ -26,8 +41,6 @@ document.getElementById('documentForm').addEventListener('submit', async functio
 
     try {
         // Envia os dados para o backend
-        // Certifique-se de que a URL do backend está correta.
-        // Se estiver rodando localmente na porta 3000, seria 'http://localhost:3000/generate-pdf'
         const response = await fetch('http://localhost:3000/generate-pdf', {
             method: 'POST',
             headers: {
@@ -38,8 +51,10 @@ document.getElementById('documentForm').addEventListener('submit', async functio
 
         if (!response.ok) {
             // Se a resposta não for OK (ex: erro 400, 500)
-            const errorText = await response.text();
-            throw new Error(`Erro ao gerar PDF: ${response.status} - ${errorText}`);
+            const responseData = await response.json().catch(() => ({}));
+            const errorMessage = responseData.message || `Erro ao gerar PDF: ${response.status}`;
+            const errors = responseData.errors ? '\n\n' + responseData.errors.join('\n') : '';
+            throw new Error(`${errorMessage}${errors}`);
         }
 
         // Se a resposta for um blob (o PDF)
@@ -49,18 +64,11 @@ document.getElementById('documentForm').addEventListener('submit', async functio
         // Abre o PDF em uma nova aba para visualização e impressão
         window.open(url, '_blank');
 
-        // Opcional: para download direto
-        // const a = document.createElement('a');
-        // a.href = url;
-        // a.download = 'documento_gerado.pdf';
-        // document.body.appendChild(a);
-        // a.click();
-        // document.body.removeChild(a);
-        // URL.revokeObjectURL(url); // Libera o objeto URL
+        alert('PDF gerado com sucesso! Verifique sua janela pop-up.');
 
     } catch (error) {
         console.error('Erro:', error);
-        alert(`Ocorreu um erro ao gerar o documento: ${error.message}. Por favor, tente novamente.`);
+        alert(`Ocorreu um erro ao gerar o documento:\n\n${error.message}\n\nPor favor, tente novamente.`);
     } finally {
         // Restaura o botão
         generateButton.textContent = originalButtonText;

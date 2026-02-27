@@ -1,0 +1,6 @@
+node_modules/
+pdfs/
+*.log
+.env
+db/documents.db
+.DS_Store
